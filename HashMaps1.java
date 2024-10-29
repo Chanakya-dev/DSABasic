@@ -58,27 +58,26 @@ class HashMaps1<K, V> {
             }
         }
 
-        return null; // Key not found after probing
+        return null;
     }
 
     public V remove(K key) {
         int index = getHash(key);
 
-        // Using a for loop to probe for the key to remove
         for (int i = 0; i < table.length; i++) {
-            index = (index + i) % table.length; // Linear probing
+            index = (index + i) % table.length; 
 
             if (table[index] == null) {
-                return null; // Key not found
+                return null; 
             } else if (!table[index].isDeleted && table[index].key.equals(key)) {
                 V oldValue = table[index].value;
-                table[index].isDeleted = true; // Mark as deleted
+                table[index].isDeleted = true;
                 size--;
                 return oldValue;
             }
         }
 
-        return null; // Key not found
+        return null; 
     }
 
     public int size() {
