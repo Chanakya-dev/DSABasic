@@ -27,16 +27,15 @@ class HashMaps1<K, V> {
     public void put(K key, V value) {
         int index = getHash(key);
 
-        // Using a for loop to probe for an available slot
         for (int i = 0; i < table.length; i++) {
-            index = (getHash(key) + i) % table.length; // Linear probing
+            index = (getHash(key) + i) % table.length;
 
             if (table[index] == null || table[index].isDeleted) {
                 table[index] = new Entry<>(key, value);
                 size++;
                 return;
             } else if (table[index].key.equals(key)) {
-                table[index].value = value; // Update value for existing key
+                table[index].value = value; 
                 return;
             }
         }
@@ -47,12 +46,12 @@ class HashMaps1<K, V> {
     public V get(K key) {
         int index = getHash(key);
 
-        // Using a for loop to probe for the key
+    
         for (int i = 0; i < table.length; i++) {
-            index = (index + i) % table.length; // Linear probing
+            index = (index + i) % table.length; 
 
             if (table[index] == null) {
-                return null; // Key not found
+                return null;
             } else if (!table[index].isDeleted && table[index].key.equals(key)) {
                 return table[index].value;
             }
